@@ -1,0 +1,20 @@
+on: push 
+name: publish
+jobs:
+  publish:
+    name: Deploy
+    runs-on: ubuntu-latest
+    steps:
+    - name: GetCode
+      uses: actions/checkout@v4 
+
+    - name: 
+      uses: SamKirkland/FTP-Deploy-Action@v4.3.6
+      with: 
+        server: ${{ secrets.HOSTNAME }}
+        username: ${{ secrets.HOSTNAME }}
+        password: ${{ secrets.PASSWORD }}
+        port: ${{ secrets.PORT }}
+        protocol: ${{ secrets.PROTOCOL }}
+        exclude:
+          **/.git*/**
